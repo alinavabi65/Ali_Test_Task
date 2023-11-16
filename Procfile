@@ -1,0 +1,1 @@
+web: gunicorn AliDjango.wsgi --log-file -
