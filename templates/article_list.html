@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .step-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pagination a {
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            color: #007bff;
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Article List</h1>
+    <ul>
+        {% for article in articles %}
+        <li>
+            <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
+            <p>Written by {{ article.author }} on {{ article.publication_datetime }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {{ page_obj.number }}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% else %}
+                <span class="disabled">&laquo; First</span>
+                <span class="disabled">Previous</span>
+            {% endif %}
+            
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+            {% else %}
+                <span class="disabled">Next</span>
+                <span class="disabled">Last &raquo;</span>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
+

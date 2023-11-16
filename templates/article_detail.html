@@ -1,0 +1,48 @@
+<!-- created_article_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .article-details {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .back-btn {
+            margin-bottom: 10px;
+        }
+        .back-btn a {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .back-btn a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="article-details">
+    <a class="back-btn" href="{% url 'article_list' %}">
+        <button>Back to Article List</button>
+    </a>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+</div>
+
+</body>
+</html>
