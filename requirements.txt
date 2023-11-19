@@ -162,6 +162,7 @@ weasel==0.3.2
 webcolors==1.13
 webencodings==0.5.1
 websocket-client==1.6.1
+whitenoise==6.6.0
 widgetsnbextension==4.0.8
 yara-python==4.3.1
 yarl==1.9.2
